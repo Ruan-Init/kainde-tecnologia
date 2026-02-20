@@ -10,7 +10,7 @@ export default function HeroCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    let THREE: typeof import("three");
+    let THREE: any;
 
     async function init() {
       THREE = await import("three");
@@ -26,7 +26,7 @@ export default function HeroCanvas() {
 
       const renderer = new THREE.WebGLRenderer({
         canvas: canvas!,
-        antialias: false, // lightweight
+        antialias: false,
         alpha: true,
         powerPreference: "low-power",
       });
@@ -34,8 +34,7 @@ export default function HeroCanvas() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.setClearColor(0x000000, 0);
 
-      // Hexagonal grid of floating particles - very lightweight
-      const particles: THREE.Mesh[] = [];
+      const particles: any[] = [];
       const geometry = new THREE.OctahedronGeometry(0.08, 0);
       const matRed = new THREE.MeshBasicMaterial({ color: 0xc1121f, transparent: true, opacity: 0.8 });
       const matGray = new THREE.MeshBasicMaterial({ color: 0x3d3d3d, transparent: true, opacity: 0.4 });
@@ -61,7 +60,6 @@ export default function HeroCanvas() {
         particles.push(mesh);
       }
 
-      // One large wireframe hex for bg
       const hexGeo = new THREE.TorusGeometry(4, 0.02, 6, 6);
       const hexMat = new THREE.MeshBasicMaterial({ color: 0xc1121f, transparent: true, opacity: 0.06 });
       const hex = new THREE.Mesh(hexGeo, hexMat);
@@ -94,7 +92,6 @@ export default function HeroCanvas() {
         animRef.current = requestAnimationFrame(animate);
         t += 0.016;
 
-        // Smooth camera drift
         camera.position.x += (mouse.x * 1.5 - camera.position.x) * 0.03;
         camera.position.y += (mouse.y * 1.0 - camera.position.y) * 0.03;
         camera.lookAt(0, 0, 0);
@@ -104,9 +101,7 @@ export default function HeroCanvas() {
           p.position.y += s.y;
           p.rotation.x += s.rotX;
           p.rotation.z += s.rotZ;
-          // Float effect
           p.position.y += Math.sin(t + s.phase) * 0.002;
-          // Wrap around
           if (p.position.y > 8) p.position.y = -8;
           if (p.position.y < -8) p.position.y = 8;
         });
