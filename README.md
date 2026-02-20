@@ -2,7 +2,7 @@
 
 Este repositório contém o código do site institucional da **Kainde Tecnologia**, construído com [Next.js 16](https://nextjs.org/docs) aproveitando o **App Router** e o bundler Turbopack. O projeto é multilíngue (PT/EN), responsivo e traz um pequeno efeito 3D via **Three.js** no cabeçalho.
 
-> Antes de publicar este projeto no GitHub, atualize qualquer informação de contato e verifique os dados do portfólio.
+
 
 ---
 
