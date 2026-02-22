@@ -11,7 +11,7 @@ Este repositório contém o código do site institucional da **Kainde Tecnologia
 ### Pré‑requisitos
 
 - Node.js **20.9.0** ou superior (Next.js 16 exige).
-- npm ou pnpm.
+- npm.
 
 ```bash
 # verificar versão
